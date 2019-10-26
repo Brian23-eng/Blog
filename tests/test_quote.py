@@ -13,7 +13,7 @@ class QuoteTest(unittest.TestCase):
         Set up method that will run before every
         
         '''
-        self.new_quote = Quote(25, 'b.omosh', 'you are great in everything you do', 'https://b.odhis.com')
+        self.new_quote = Quote('b.omosh', 'you are great in everything you do')
         
     def test_instance(self):
         self.assertTrue(isinstance(self.new_quote,Quote))
