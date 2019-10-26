@@ -1,9 +1,8 @@
 {% extends 'bootstrap/base.html' %}{% block styles %}{{super()}}
 
 <!-- styles links -->
-
-
-{% endblock %}
+<link href="https://fonts.googleapis.com/css?family=Arapey|Nanum+Gothic+Coding|Saira+Condensed&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"> {% endblock %}
 
 <!-- block navbar -->
 {% block navbar %}{% include 'navbar.html' %} {% endblock %}

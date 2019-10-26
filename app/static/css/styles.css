@@ -1,0 +1,35 @@
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.61), rgba(0, 0, 0, 0.61)), url('https://i1.pickpik.com/photos/303/426/359/startup-start-up-notebooks-creative-preview.jpg');
+    background-size: cover;
+    color: white;
+}
+
+.head {
+    font-family: 'Saira Condensed', sans-serif;
+    padding-top: 70px;
+    font-size: 100px;
+}
+
+.quo {
+    font-size: 40px;
+}
+
+.quote {
+    padding-bottom: 70px;
+    padding-top: 50px;
+}
+
+.intro {
+    font-size: 25px;
+    font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.ote {
+    font-size: 20px;
+    font-family: 'Arapey', serif;
+    font-style: italic;
+}
+
+.author {
+    font-size: 15px;
+}

@@ -1,13 +1,13 @@
 {% extends 'base.html' %}{% block content %}
 <div class="container">
-    <h1 class="text-center">BlogPost</h1>
+    <h1 class="text-center head">-BlogPost-</h1>
     <div class=" text-center intro">
         <p>Welcome to BlogPost where you can read, post and comment on blogs</p>
     </div>
     <div class="quote text-center">
-        <h4>Quote of the day</h4>
-        <p>{{ quote.quote }}</p>
-        <p>{{ quote.author }}</p>
+        <h4 class="quo">Quote of the day</h4>
+        <p class="ote">{{ quote.quote }}</p>
+        <p class="author">~{{ quote.author }}~</p>
 
     </div>
     <div class="text-center">
