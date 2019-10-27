@@ -1,10 +1,13 @@
 from flask import render_template, request, redirect, url_for, flash, abort
+from PIL import Image
 from . import main
 from ..request import get_quote
 from flask_login import current_user, login_required
 from .. import db
 from ..models import Post
-from .forms import PostForm
+from .forms import PostForm, UpdateProfileForm
+import os
+import secrets
 
 
 @main.route('/')
@@ -78,3 +81,41 @@ def delete_post(post_id):
     db.session.commit()
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('main.home'))
+
+def save_picture(form_picture):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(app.root_path, 'static/photos', picture_fn)
+
+    output_size = (125, 125)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    i.save(picture_path)
+
+    return picture_fn
+
+
+@main.route("/account", methods=['GET', 'POST'])
+def account():
+    form = UpdateProfileForm()
+    
+    if form.validate_on_submit():
+        if form.picture.data:
+            picture_file = save_picture(form.picture.data)
+            current_user.image_file = picture_file
+            
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('Your account has been activated!', 'success')
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+        
+    image_file = url_for('static', filename='photos' + current_user.image_file)
+    
+    return render_template('account.html', title='Account | Welcome to BlogPost', image_file=image_file, form=form)
+            
+            
