@@ -10,6 +10,22 @@ import os
 import secrets
 
 
+posts = [
+    {
+        'author': 'John Doe',
+        'title': 'Blog Post 1',
+        'content': 'My first blog post is going to be awesome',
+        'date_posted': 'April 20, 2019'
+    },
+    {
+        'author': 'Jane Doe',
+        'title': 'Blog Post 2',
+        'content': 'Am here for demo purposes',
+        'date_posted': 'April 23, 2019'
+    }
+]
+
+
 @main.route('/')
 def index():
     
@@ -24,8 +40,10 @@ def index():
     return render_template("index.html", title = title, quote=quote)
 @main.route("/home")
 def home():
+    page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
-    return render_template('home.html', posts=posts)
+    return render_template('home.html', posts=posts, title="Posts | Welcome to BlogPosts")
+    
 
 
 @main.route("/post/new", methods=['GET', 'POST'])
@@ -68,7 +86,7 @@ def update_post(post_id):
         form.title.data = post.title
         form.content.data = post.content
         
-    return render_template('create_post.html', title='Update Post | Welcome to BlogPost', form=form)
+    return render_template('create_post.html', title='Update Post | Welcome to BlogPost', form=form, legend='Update Post')
 
 @main.route("/post/<int:post_id>/delete", methods=['POST'])
 @login_required

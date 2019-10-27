@@ -1,18 +1,20 @@
 {% extends 'base.html' %}{% block content %}
-<div class="container">
-    <h1 class="text-center head">-BlogPost-</h1>
-    <div class=" text-center intro">
-        <p>Welcome to BlogPost where you can read, post and comment on blogs</p>
-    </div>
-    <div class="quote text-center">
-        <h4 class="quo">Quote of the day</h4>
-        <p class="ote">{{ quote.quote }}</p>
-        <p class="author">~{{ quote.author }}~</p>
+<div class="index">
+    <div class="container">
+        <h1 class="text-center head">-BlogPost-</h1>
+        <div class=" text-center intro">
+            <p>Welcome to BlogPost where you can read, post and comment on blogs</p>
+        </div>
+        <div class="quote text-center">
+            <h4 class="quo">Quote of the day</h4>
+            <p class="ote">{{ quote.quote }}</p>
+            <p class="author">~{{ quote.author }}~</p>
+
+        </div>
+        <div class="text-center kik">
+            <a href="/home"><button class="btn btn-success ">View Blogs</button></a>
+        </div>
 
     </div>
-    <div class="text-center">
-        <a href="/"><button class="btn btn-success">View Blogs</button></a>
-    </div>
-
 </div>
 {% endblock %}

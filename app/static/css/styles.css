@@ -1,7 +1,8 @@
-body {
+.index {
     background-image: linear-gradient(rgba(0, 0, 0, 0.61), rgba(0, 0, 0, 0.61)), url('https://i1.pickpik.com/photos/303/426/359/startup-start-up-notebooks-creative-preview.jpg');
     background-size: cover;
     color: white;
+    background-position: fixed;
 }
 
 .head {
@@ -32,4 +33,8 @@ body {
 
 .author {
     font-size: 15px;
+}
+
+.kik {
+    padding-bottom: 66px;
 }

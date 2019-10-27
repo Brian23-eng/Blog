@@ -5,7 +5,7 @@ class Config:
     Describes the general configurations
     
     '''
-    QUOTES_API_BASE_URL = os.environ.get(' QUOTES_API_BASE_URL')
+
     SECRET__KEY = os.environ.get('SECRET__KEY ')
     DATABASE_PASS = os.environ.get('DATABASE_PASS')
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://brian:brayo13@localhost/blog'
