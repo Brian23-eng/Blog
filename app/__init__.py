@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_wtf.csrf import CSRFProtect
 from config import config_options, DevConfig
 from flask_bootstrap import Bootstrap
 
@@ -9,7 +10,7 @@ login_manager = LoginManager()
 login_manager.session_protection = 'strong'
 login_manager.login_view = 'auth.login'
 
-
+csrf = CSRFProtect()
 bootstrap = Bootstrap()
 db = SQLAlchemy()
 
@@ -28,11 +29,14 @@ def create_app(config_name):
     bootstrap.init_app(app)
     db.init_app(app)
     login_manager.init_app(app)
+    csrf.init_app(app)
     
     
     
     # Setting app configurations
     app.config.from_object(DevConfig)
+    app.config['SECRET_KEY'] = 'bran23'
+    app.config['WTF_CSRF_SECRET_KEY'] = 'bran23'
     
     #registering the main app Bluprints
     from .main import main as main_bluprint
