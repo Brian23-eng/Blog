@@ -1,29 +1,14 @@
-from flask import render_template, request, redirect, url_for, flash, abort
+from flask import render_template, request, redirect, url_for, flash, abort,current_app
 from PIL import Image
 from . import main
 from ..request import get_quote
 from flask_login import current_user, login_required
 from .. import db
-from ..models import Post
+from ..models import Post, User
 from .forms import PostForm, UpdateProfileForm
 import os
 import secrets
 
-
-posts = [
-    {
-        'author': 'John Doe',
-        'title': 'Blog Post 1',
-        'content': 'My first blog post is going to be awesome',
-        'date_posted': 'April 20, 2019'
-    },
-    {
-        'author': 'Jane Doe',
-        'title': 'Blog Post 2',
-        'content': 'Am here for demo purposes',
-        'date_posted': 'April 23, 2019'
-    }
-]
 
 
 @main.route('/')
@@ -104,7 +89,7 @@ def save_picture(form_picture):
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
-    picture_path = os.path.join(app.root_path, 'static/photos', picture_fn)
+    picture_path = os.path.join(current_app.root_path, 'static/photos', picture_fn)
 
     output_size = (125, 125)
     i = Image.open(form_picture)
@@ -127,7 +112,7 @@ def account():
         current_user.email = form.email.data
         db.session.commit()
         flash('Your account has been activated!', 'success')
-        return redirect(url_for('account'))
+        return redirect(url_for('main.account'))
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
@@ -135,5 +120,14 @@ def account():
     image_file = url_for('static', filename='photos' + current_user.image_file)
     
     return render_template('account.html', title='Account | Welcome to BlogPost', image_file=image_file, form=form)
+
+@main.route('/user/<string:username>')
+def user_posts(username):
+    page = request.args.get('page', 1, type=int)
+    user = User.query.filter_by(username=username).first_or_404()
+    posts = Post.query.filter_by(author=user)\
+        .order_by(Post.date_posted.desc())\
+        .paginate(page=page, per_page=5)
+    return render_template('user_posts.html', posts=posts, user=user)
             
             

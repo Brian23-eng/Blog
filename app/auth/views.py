@@ -10,8 +10,8 @@ import os
 
 @auth.route('/login',methods = ['GET','POST'])
 def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('main.index'))
+    # if current_user.is_authenticated:
+    #     return redirect(url_for('main.index'))
     
     login_form = LoginForm()
     
@@ -35,10 +35,11 @@ def logout():
 
 @auth.route('/register',methods = ['GET', 'POST'])
 def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('main.index'))
+    # if current_user.is_authenticated:
+    #     return redirect(url_for('main.index'))
     form = RegistrationForm()
     if form.validate_on_submit():
+        flash(f'Account created for {form.username.data}!', 'success')
         user = User(email = form.email.data, username = form.username.data, password = form.password.data, )
         db.session.add(user)
         db.session.commit()
