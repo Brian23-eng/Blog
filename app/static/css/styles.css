@@ -1,4 +1,4 @@
-.index {
+body {
     background-image: linear-gradient(rgba(0, 0, 0, 0.61), rgba(0, 0, 0, 0.61)), url('https://i1.pickpik.com/photos/303/426/359/startup-start-up-notebooks-creative-preview.jpg');
     background-size: cover;
     color: white;
@@ -40,16 +40,65 @@
 }
 
 .img1,
-.img2 {
+.img2,
+.img3 {
     height: 200px;
     width: 200px;
 }
 
-.home,
 .account,
 .post,
-.posty {
+.posty,
+.user {
     margin-left: 30px;
     margin-right: 20px;
     margin-bottom: 15px;
+}
+
+.content-section {
+    background: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.article-title {
+    color: #444444;
+}
+
+a.article-title:hover {
+    color: #428bca;
+    text-decoration: none;
+}
+
+.article-content {
+    white-space: pre-line;
+}
+
+.article-metadata {
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #e3e3e3
+}
+
+.article-metadata a:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+.article-svg {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+}
+
+.home {
+    margin-left: 10px;
+    padding-right: 20px;
+}
+
+.butto {
+    text-align: center;
+    margin-bottom: 20px;
 }
