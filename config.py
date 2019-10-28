@@ -10,6 +10,7 @@ class Config:
     DATABASE_PASS = os.environ.get('DATABASE_PASS')
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://brian:brayo13@localhost/blog'
     SQLALCHEMY_TRACK_MODIFICATIONS = True
+    UPLOADED_PHOTOS_DEST = 'app/static/photos'
     
     
     # Simple MDE configurations
@@ -42,6 +43,8 @@ class DevConfig(Config):
         Config: The parent configuration class with general configuration settings
         
     '''
+    
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://brian:brayo13@localhost/blog'
     DEBUG = True
     
 

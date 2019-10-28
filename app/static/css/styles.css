@@ -56,9 +56,8 @@ body {
 }
 
 .content-section {
-    background: #ffffff;
+    background: #D0D3D4;
     padding: 10px 20px;
-    border: 1px solid #dddddd;
     border-radius: 3px;
     margin-bottom: 20px;
 }
@@ -74,6 +73,7 @@ a.article-title:hover {
 
 .article-content {
     white-space: pre-line;
+    color: black;
 }
 
 .article-metadata {
@@ -94,8 +94,8 @@ a.article-title:hover {
 }
 
 .home {
-    margin-left: 0px;
-    padding-right: 20px;
+    padding-right: 60px;
+    padding-left: 60px;
 }
 
 .butto {
@@ -109,4 +109,12 @@ a.article-title:hover {
 
 .juu {
     padding-bottom: 10px;
+}
+
+.fade {
+    color: black;
+}
+
+.account {
+    color: black;
 }
