@@ -7,7 +7,7 @@ from app .models import User, Post
 
 
 # Instances for creating the app
-app = create_app('development')
+app = create_app('production')
 manager = Manager(app)
 migrate = Migrate(app, db)
 manager.add_command('db', MigrateCommand)
