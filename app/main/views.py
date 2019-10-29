@@ -129,5 +129,17 @@ def user_posts(username):
         .order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=5)
     return render_template('user_posts.html', posts=posts, user=user)
+
+# @main.route("/account", methods=['GET', 'POST'])
+# @login_required
+# def update_pic(uname):
+#     user = User.query.filter_by(username = uname).first()
+#     if 'photo' in request.files:
+#         filename = photos.save(request.files['photo'])
+#         path = f'photos/{filename}'
+#         user.profile_pic_path = path
+#         # user_photo = PhotoProfile(pic_path = path,user = user)
+#         db.session.commit()
+#     return redirect(url_for('main.account',uname=uname,id_user=current_user.id))
             
             

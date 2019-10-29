@@ -28,6 +28,7 @@ class User(UserMixin, db.Model):
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     hash_pass = db.Column(db.String(255))
     posts = db.relationship('Post', backref='author', lazy='dynamic')
+    photos = db.relationship('PhotoProfile',backref = 'user',lazy = "dynamic")
     
     
     @property
@@ -57,4 +58,15 @@ class Post(db.Model):
     
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
+    
+class PhotoProfile(db.Model):
+    
+    __tablename__ = 'profile_photos'
+
+    id = db.Column(db.Integer,primary_key = True)
+    pic_path = db.Column(db.String())
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+
+
+
     
